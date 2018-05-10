@@ -1,200 +1,121 @@
 <!DOCTYPE html>
 
 <html>
+
 <head>
+	<meta charset="UTF-8">
 	<title>Train Time</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
+
+	<!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+	<!-- Firebase Reference -->
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+	<!-- Moment.js Reference -->
+	<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+
+	<!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Crimson+Text" rel="stylesheet">
 
 </head>
 
 
 <body>
-
+	<!--Train Time-->
 	<div class="container">
 
-		<!-- header area -->
-		<div class="jumbortron">
+		<!-- Jumbotron -->
+		<div class="jumbotron">
 			<h1 class="header-top">Anytime is Train Time</h1>
 		</div>
+		<!-- Current Train Schedule-->
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h3 class="panel-title">
+							<strong>Current Train Schedule</strong>
+						</h3>
+					</div>
+					<div class="panel-body">
+						<table class="table table-hover" id="train-table">
+							<thead>
+								<tr>
+									<th>Train Name</th>
+									<th>Destination</th>
+									<th>Frequency (min)</th>
+									<th>Next Arrival (military time)</th>
+									<th>Minutes Away</th>
+								</tr>
+							</thead>
+							<tbody>
 
-		<!-- add train area -->
-		<div class="col-lg-6">
-			<div class="panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">Current Train Schedule</h3>
-				</div>
-
-
-
-				<div class="panel-body" id="new-train">
-					<table class="train-table">
-						<thead>
-							<tr>
-								<th><i class="train-name"></i>Train Name</th>
-								<th><i class="destination"></i>Destination</th>
-								<th><i class="frequency"></i>Frequency (min)</th>
-								<th><i class="next-arrival"></i>Next Arrival</th>
-								<th><i class="minutes-away"></i>Minutes Away</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr class="train-schedules">
-								<td>Trenton Express</td>
-								<td>Trenton</td>
-								<td>25</td>
-								<td>05:35 PM</td>
-								<td>10</td>
-							</tr>
-						</tbody>
-						<tbody>
-							<tr class="train-schedules">
-								<td>Oregon Trail</td>
-								<td>Salem, Oregon</td>
-								<td>3600</td>
-								<td>01:39 PM</td>
-								<td>1154</td>
-							</tr>
-						</tbody>
-						<tbody>
-							<tr class="train-schedules">
-								<td>Midnight Carriage</td>
-								<td>Philadelphia</td>
-								<td>15</td>
-								<td>05:35 PM</td>
-								<td>10</td>
-							</tr>
-						</tbody>
-						<tbody>
-							<tr class="train-schedules">
-								<td>Sing Sing Caravan</td>
-								<td>Atlanta</td>
-								<td>45</td>
-								<td>05:53 PM</td>
-								<td>25</td>
-							</tr>
-						</tbody>
-						<tbody>
-							<tr class="train-schedules">
-								<td>Boston Bus</td>
-								<td>Boston</td>
-								<td>65</td>
-								<td>05:50 PM</td>
-								<td>25</td>
-							</tr>
-						</tbody>
-						<tbody>
-							<tr class="train-schedules">
-								<td>California Caravan</td>
-								<td>San Francisco</td>
-								<td>6000</td>
-								<td>01:25 PM</td>
-								<td>4740</td>
-							</tr>
-						</tbody>	
-						<tbody>
-							<tr class="train-schedules">
-								<td>Analben's Train</td>
-								<td>Florida</td>
-								<td>25</td>
-								<td>05:28 PM</td>
-								<td>3</td>
-							</tr>
-						</tbody>																									
-					</table>
-
-					<pagination [boundaryLinks]="true" [totalItems]="totalItems" [itemsPerPage]="itemsPerPage" [(ngModel)]="currentPage" class="pagination-sm"
-					previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;" (pageChanged)="pageChanged($event)"></pagination>
-				</div>
-
-				<!-- add train area -->
-				<div class="row">
-					<div class="col-lg-6">
-						<div class="panel-heading">
-							<h3 class="panel-title">Add Train</h3>
-						</div>
-						<div class="panel-body">
-
-							<!-- form input area -->
-							<form role="form">
-								<div class="form-group">
-									<label for="name-input">Train Name</label>
-									<input class="form-control" id="name-input" type="text">
-								</div>
-								<div class="form-group">
-									<label for="destination-input">Destination</label>
-									<input class="form-control" id="destination-input" type="text">
-								</div>
-								<div class="form-group">
-									<label for="first-train-input">First Train time (HH:mm - military time)</label>
-									<input type="form-control" id="first-train-input" type="number">
-								</div>
-								<div class="form-group">
-									<label for="frequency-input">Frequency (min)</label>
-									<input type="form-control" id="frequency-input" type="number">
-								</div>
-								<button class="btn-submit" id="add-train" type="submit">Submit</button>
-							</form>
-						</div>
+							</tbody>
+						</table>
 					</div>
 				</div>
+				<!-- Add New Train Here -->
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h3 class="panel-title">
+							<strong>Add Train</strong>
+						</h3>
+					</div>
+					<div class="panel-body">
 
-	<div class="panel-body" id="recent-member">
-            <p id="name-display">name-display</h2>
-            <p id="destination-display">destination-display</h4>
-            <p id="first-train-input-display">first-train-input-display</h4>
-            <p id="frequency-display">frequency-display</p>
-    </div>
-
-	<!-- jQuery -->
-	<script src="https://code.jquery.com/jquery.js"></script>
-	
-	<!-- JavaScript -->
-  	<script>
-  		// on click event
-  		$("#add-train").on("click", function(event) {
-
-      	// prevent page from refreshing when form tries to submit itself
-      	event.preventDefault();
-
-		// Capture user inputs and store them into variables
-	    var name = $("#name-input").val().trim();
-	    var destination = $("#destination-input").val().trim();
-	    var firstTrain = $("#first-train-input").val().trim();
-	    var frequency = $("#frequency-input").val().trim();
-
-		// Console log each of the user inputs to confirm we are receiving them
-	    console.log(name);
-	    console.log(destination);
-	    console.log(firstTrain);
-	    console.log(frequency);
-
-
-      	// Replaces the content in the "Current Train Schedule" div with the new train info
-      	$("#name-display").text(name);
-      	$("#destination-display").text(destination);
-      	$("#first-train-input-display").text(firstTrain);
-      	$("#frequency-display").text(frequency);
-
-      	// Clear localStorage
-      	localStorage.clear();
-
-      	// Store all content into localStorage
-      	localStorage.setItem("name", name);
-      	localStorage.setItem("destination", destination);
-      	localStorage.setItem("firstTrain", firstTrain);
-      	localStorage.setItem("frequency", frequency);
-    	});
-
-  		// By default display the content from localStorage
-    	$("#name-display").text(localStorage.getItem("name") || '');
-    	$("#destination-display").text(localStorage.getItem("destination") || '');
-    	$("#first-train-input-display").text(localStorage.getItem("firstTrain") || '');
-    	$("#frequency-display").text(localStorage.getItem("frequency") || '');
-
-
-	</script>
+						<!-- Form Input Area -->
+						<form role="form">
+							<div class="form-group">
+								<label for="name-input">Train Name</label>
+								<input class="form-control" id="name-input" type="text">
+							</div>
+							<div class="form-group">
+								<label for="destination-input">Destination</label>
+								<input class="form-control" id="destination-input" type="text">
+							</div>
+							<div class="form-group">
+								<label for="first-train-input">First Train time (hh:mm - military time)</label>
+								<input class="form-control" id="first-train-input" type="text">
+							</div>
+							<div class="form-group">
+								<label for="frequency-input">Frequency (min)</label>
+								<input class="form-control" id="frequency-input" type="text">
+							</div>
+							<button class="btn-submit" id="add-train" type="submit">Submit</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 </body>
 
 </html>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/5.0.1/firebase.js"></script>
+<script>
+	// Initialize Firebase
+	var config = {
+		apiKey: "AIzaSyAMVGg_jNwNCrAfqFQpdFl9-LNIm0k2V2w",
+		authDomain: "train-scheduler-firebase-7d1a9.firebaseapp.com",
+		databaseURL: "https://train-scheduler-firebase-7d1a9.firebaseio.com",
+		projectId: "train-scheduler-firebase-7d1a9",
+		storageBucket: "",
+		messagingSenderId: "919641720159"
+	};
+	firebase.initializeApp(config);
+
+	// Get a reference to the database service
+	var trainData = firebase.database();
+
+</script>
+
+<!-- Link to our js file -->
+<script src="assets/javascript/logic.js"></script>
