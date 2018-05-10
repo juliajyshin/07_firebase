@@ -77,27 +77,3 @@ trainData.ref().on("child_added", function (childSnapshot, prevChildKey) {
         tFrequency + "</td><td>" + tFirstTrain + "</td><td>" + tArrival + "</td><td>" + tMinutes + "</td></tr>");
 });
 
-// // Replaces the content in the "Current Train Schedule" div with the new train info
-// $("#tname-display").text(name);
-// $("#tdestination-display").text(destination);
-// $("#tfirst-train-input-display").text(firstTrain);
-// $("#tfrequency-display").text(frequency);
-
-// // Clear localStorage
-// localStorage.clear();
-
-// // Store all content into localStorage
-// localStorage.setItem("name", name);
-// localStorage.setItem("destination", destination);
-// localStorage.setItem("firstTrain", firstTrain);
-// localStorage.setItem("frequency", frequency);
-
-
-
-
-// // By default display the content from localStorage
-// $("#name-display").text(localStorage.getItem("name") || '');
-// $("#destination-display").text(localStorage.getItem("destination") || '');
-// $("#first-train-input-display").text(localStorage.getItem("firstTrain") || '');
-// $("#frequency-display").text(localStorage.getItem("frequency") || '');
-
