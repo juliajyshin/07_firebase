@@ -74,7 +74,7 @@ trainData.ref().on("child_added", function (childSnapshot, prevChildKey) {
 
     // Add train data into the table
     $("#train-table > tbody").append("<tr><td>" + tName + "</td><td>" + tDestination + "</td><td>" +
-        tFrequency + "</td><td>" + tFirstTrain + "</td><td>" + tMinutes + "</td></tr>");
+        tFrequency + "</td><td>" + tFirstTrain + "</td><td>" + tArrival + "</td><td>" + tMinutes + "</td></tr>");
 });
 
 // // Replaces the content in the "Current Train Schedule" div with the new train info
